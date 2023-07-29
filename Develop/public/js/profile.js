@@ -38,6 +38,8 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// Create an updateButtonHandler
+
 document
   .querySelector('.new-project-form')
   .addEventListener('submit', newFormHandler);

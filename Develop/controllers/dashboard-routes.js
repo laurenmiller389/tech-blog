@@ -17,7 +17,7 @@ router.get('/', withAuth, async (req, res) => {
     
     const postData = await Post.findAll({
       //specifically post attributes:
-      attributes: ['id', 'title', 'content', 'date_created' ],
+      // attributes: ['id', 'title', 'content', 'date_created' ],
       include: [
         {
           model: User,
@@ -25,7 +25,7 @@ router.get('/', withAuth, async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'comment', 'user_id','post_id', 'date_created'],
+          // attributes: ['id', 'comment', 'user_id','post_id', 'date_created'],
           include: {
             model: User,
             attributes: ['username']
@@ -38,6 +38,7 @@ router.get('/', withAuth, async (req, res) => {
     const posts = postData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
+    // Refactor the profile handlebars to become a dashboard that meets the requirements
     res.render('homepage', { 
       posts, 
       logged_in: req.session.logged_in 
@@ -48,11 +49,12 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 //GET a single post from :id
+// Make this an ADMIN single view to or edit
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       //specifically post attributes:
-      attributes: ['id', 'title', 'content', 'date_created' ],
+      // attributes: ['id', 'title', 'content', 'date_created' ],
       include: [
         {
           model: User,
@@ -60,7 +62,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'comment', 'user_id','post_id', 'date_created'],
+          // attributes: ['id', 'comment', 'user_id','post_id', 'date_created'],
           include: {
             model: User,
             attributes: ['username']

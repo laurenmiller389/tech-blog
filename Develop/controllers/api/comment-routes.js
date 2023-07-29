@@ -22,7 +22,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 //GET comment from :id
-router.get('/', withAuth, async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     // GET all posts and JOIN with user data
     
